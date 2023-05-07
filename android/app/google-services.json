@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "442265835184",
+    "project_id": "food-fe255",
+    "storage_bucket": "food-fe255.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442265835184:android:1f68f19d8f68287b558d75",
+        "android_client_info": {
+          "package_name": "com.thatskishan.food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442265835184-f4r2r8tu17tmp9159l9bj0ct5am9gf68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2YyZ1zBdFDCqlxZ7h5Kw4UdF25vzDkLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442265835184-f4r2r8tu17tmp9159l9bj0ct5am9gf68.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
