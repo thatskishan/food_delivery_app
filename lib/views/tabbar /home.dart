@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/controllers/quantity_controller.dart';
 import 'package:food_delivery_app/views/screens/categories.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../controllers/favicon_controller.dart';
+import '../../controllers/favourite_controller.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,82 +16,88 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  QuantityController quantityController = Get.put(QuantityController());
+  FavouriteController favouriteController = Get.put(FavouriteController());
+  FavIconController iconController = Get.put(FavIconController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                hintText: "Search items",
-                hintStyle: GoogleFonts.poppins(),
-                suffixIcon: const Icon(
-                  CupertinoIcons.search,
-                  color: Colors.grey,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  hintText: "Search items",
+                  hintStyle: GoogleFonts.poppins(),
+                  suffixIcon: const Icon(
+                    CupertinoIcons.search,
+                    color: Colors.grey,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                catCon(
-                    path: "assets/images/pizza.png",
-                    name: "Pizza",
-                    filepath: 'pizza',
-                    appName: 'Pizza De-Light'),
-                catCon(
-                    path: "assets/images/salads.png",
-                    name: "Salad",
-                    filepath: 'salad',
-                    appName: 'Fresh Garden Delights'),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                catCon(
-                    path: "assets/images/drinks.png",
-                    name: "Drinks",
-                    filepath: 'drink',
-                    appName: 'Beverage Bliss'),
-                catCon(
-                    path: "assets/images/desserts.png",
-                    name: "Desserts",
-                    filepath: 'desserts',
-                    appName: 'Sweet Endings'),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                catCon(
-                    path: "assets/images/pasta.png",
-                    name: "Pasta",
-                    filepath: 'pasta',
-                    appName: 'From Italy with Love'),
-                catCon(
-                    path: "assets/images/burger.png",
-                    name: "Burger",
-                    filepath: 'burger',
-                    appName: 'Juicy and Delicious'),
-              ],
-            ),
-          ],
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  catCon(
+                      path: "assets/images/pizza.png",
+                      name: "Pizza",
+                      filepath: 'pizza',
+                      appName: 'Pizza De-Light'),
+                  catCon(
+                      path: "assets/images/salads.png",
+                      name: "Salad",
+                      filepath: 'salad',
+                      appName: 'Fresh Garden Delights'),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  catCon(
+                      path: "assets/images/drinks.png",
+                      name: "Drinks",
+                      filepath: 'drinks',
+                      appName: 'Beverage Bliss'),
+                  catCon(
+                      path: "assets/images/desserts.png",
+                      name: "Desserts",
+                      filepath: 'desserts',
+                      appName: 'Sweet Endings'),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  catCon(
+                      path: "assets/images/pasta.png",
+                      name: "Pasta",
+                      filepath: 'pasta',
+                      appName: 'From Italy with Love'),
+                  catCon(
+                      path: "assets/images/burger.png",
+                      name: "Burger",
+                      filepath: 'burger',
+                      appName: 'Juicy and Delicious'),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

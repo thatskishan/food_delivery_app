@@ -1,1 +1,2 @@
-List<String> favorites = []; // a list to store the IDs of favorite items
+List<Map<String, dynamic>> cartItems = [];
+List<Map<String, dynamic>> favItems = [];

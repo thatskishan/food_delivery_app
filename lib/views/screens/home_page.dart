@@ -6,7 +6,12 @@ import 'package:food_delivery_app/views/tabbar%20/chat.dart';
 import 'package:food_delivery_app/views/tabbar%20/favourite.dart';
 import 'package:food_delivery_app/views/tabbar%20/home.dart';
 import 'package:food_delivery_app/views/tabbar%20/notifications.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../controllers/favicon_controller.dart';
+import '../../controllers/favourite_controller.dart';
+import '../../controllers/quantity_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,6 +21,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  FavouriteController favouriteController = Get.put(FavouriteController());
+  FavIconController iconController = Get.put(FavIconController());
+
   int _selectedIndex = 0;
 
   List<Widget> tabItems = [
@@ -90,8 +98,41 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(CupertinoIcons.chat_bubble),
             title: Text('Chat'),
           ),
-          FlashyTabBarItem(
+          /*FlashyTabBarItem(
             icon: Icon(CupertinoIcons.cart),
+            title: Text('Cart'),
+          ),*/
+          FlashyTabBarItem(
+            icon: Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                const Icon(
+                  CupertinoIcons.shopping_cart,
+                ),
+                Positioned(
+                  right: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(1),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    constraints: const BoxConstraints(
+                      minWidth: 12,
+                      minHeight: 12,
+                    ),
+                    child: GetX<QuantityController>(builder: (cc) {
+                      return Text(
+                        "${cc.quantityModel.qty}",
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+              ],
+            ),
             title: Text('Cart'),
           ),
           FlashyTabBarItem(
