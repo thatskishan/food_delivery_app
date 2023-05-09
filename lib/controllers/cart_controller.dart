@@ -1,3 +1,4 @@
+import 'package:food_delivery_app/models/cart_model.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -5,13 +6,31 @@ class CartController extends GetxController {
 
   RxList adProduct = [].obs;
 
-  void addToCart({required data}) {
-    cartItems.add(data);
+  get totalQuantity {
+    int totalQty = 0;
+
+    adProduct.forEach((element) {
+      totalQty += element.qty as int;
+    });
+    return totalQty;
+  }
+
+  get totalPrice {
+    int totalPrice = 0;
+
+    adProduct.forEach((element) {
+      totalPrice += (element.qty as int) * (element.price as int);
+    });
+    return totalPrice;
+  }
+
+  void addToCart({required CartModel data}) {
+    adProduct.add(data);
     update();
   }
 
-  void removeFromCart({required data}) {
-    cartItems.remove(data);
+  void removeFromCart({required CartModel data}) {
+    adProduct.remove(data);
     update();
   }
 }

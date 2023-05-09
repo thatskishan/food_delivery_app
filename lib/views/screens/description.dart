@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/controllers/cart_controller.dart';
+import 'package:food_delivery_app/models/cart_model.dart';
 import 'package:food_delivery_app/views/tabbar%20/cart.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -237,8 +238,6 @@ class _DescriptionState extends State<Description> {
                                         ),
                                       );
 
-                                      Navigator.pushReplacementNamed(
-                                          context, '/favourite_page');
                                       iconController.tap();
                                     },
                                     child: GetBuilder<FavIconController>(
@@ -278,9 +277,19 @@ class _DescriptionState extends State<Description> {
                                 setState(() {
                                   /*cartItems.add(
                                       allDocs[int.parse(widget.id) - 1].data());*/
-                                  cartController.addToCart(
-                                      data: allDocs[int.parse(widget.id) - 1]
-                                          .data());
+                                  CartModel data = CartModel(
+                                      name:
+                                          "${allDocs[int.parse(widget.id) - 1].data()['name']}",
+                                      image:
+                                          "${allDocs[int.parse(widget.id) - 1].data()['image']}",
+                                      price: allDocs[int.parse(widget.id) - 1]
+                                          .data()['price'],
+                                      qty: quantityController
+                                          .quantityModel.qty.value);
+                                  // cartController.addToCart(
+                                  //     data: allDocs[int.parse(widget.id) - 1]
+                                  //         .data());
+                                  cartController.adProduct.add(data);
                                   quantityController.empty();
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => const Cart()));

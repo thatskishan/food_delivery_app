@@ -9,9 +9,9 @@ import 'package:food_delivery_app/views/tabbar%20/notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../controllers/cart_controller.dart';
 import '../../controllers/favicon_controller.dart';
 import '../../controllers/favourite_controller.dart';
-import '../../controllers/quantity_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,6 +23,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   FavouriteController favouriteController = Get.put(FavouriteController());
   FavIconController iconController = Get.put(FavIconController());
+  CartController cartController = Get.put(CartController());
 
   int _selectedIndex = 0;
 
@@ -112,24 +113,17 @@ class _HomePageState extends State<HomePage> {
                 Positioned(
                   right: 0,
                   child: Container(
-                    padding: const EdgeInsets.all(1),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    constraints: const BoxConstraints(
-                      minWidth: 12,
-                      minHeight: 12,
-                    ),
-                    child: GetX<QuantityController>(builder: (cc) {
-                      return Text(
-                        "${cc.quantityModel.qty}",
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                        ),
-                      );
-                    }),
-                  ),
+                      padding: const EdgeInsets.all(1),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: GetBuilder<CartController>(builder: (context) {
+                        return Text(
+                          "${cartController.adProduct.length}",
+                          style: GoogleFonts.poppins(color: Colors.white),
+                        );
+                      })),
                 ),
               ],
             ),
